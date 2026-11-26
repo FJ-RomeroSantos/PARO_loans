@@ -52,6 +52,7 @@ function formatMoney(value) {
 }
 
 // Calculate loan payments
+
 function calculateLoan() {
     const selectedLoan = loanTypes.find(function (loan) {
         return loan.id === loanType.value;
@@ -60,22 +61,79 @@ function calculateLoan() {
     const amount = Number(amountInput.value);
     const months = Number(monthsInput.value);
 
-    if (selectedLoan) {
-        annualRate.textContent = selectedLoan.annualRate + "%";
-    } else {
+    const amountHelp = document.getElementById("amountHelp");
+    const monthsHelp = document.getElementById("monthsHelp");
+
+    errorMessage.textContent = "";
+    amountInput.classList.remove("is-invalid");
+    monthsInput.classList.remove("is-invalid");
+
+    monthlyPaymentResult.textContent = "$0.00";
+    totalPaymentResult.textContent = "$0.00";
+    totalInterestResult.textContent = "$0.00";
+
+    if (!selectedLoan) {
         annualRate.textContent = "--";
-    }
+        amountHelp.textContent = "";
+        monthsHelp.textContent = "";
 
-    if (!selectedLoan || amount <= 0 || months <= 0 ||
-        !Number.isInteger(months)) {
-
-        monthlyPaymentResult.textContent = "$0.00";
-        totalPaymentResult.textContent = "$0.00";
-        totalInterestResult.textContent = "$0.00";
+        amountInput.removeAttribute("min");
+        amountInput.removeAttribute("max");
+        monthsInput.removeAttribute("min");
+        monthsInput.removeAttribute("max");
 
         return;
     }
 
+    annualRate.textContent = selectedLoan.annualRate + "%";
+
+    // Update input limits
+    amountInput.min = selectedLoan.minAmount;
+    amountInput.max = selectedLoan.maxAmount;
+    monthsInput.min = selectedLoan.minMonths;
+    monthsInput.max = selectedLoan.maxMonths;
+
+    amountHelp.textContent =
+        "Min: " + formatMoney(selectedLoan.minAmount) +
+        " | Max: " + formatMoney(selectedLoan.maxAmount);
+
+    monthsHelp.textContent =
+        "Min: " + selectedLoan.minMonths +
+        " | Max: " + selectedLoan.maxMonths + " months";
+
+    // Wait until both fields are filled
+    if (amountInput.value === "" || monthsInput.value === "") {
+        return;
+    }
+
+    // Validate loan amount
+    if (amount < selectedLoan.minAmount ||
+        amount > selectedLoan.maxAmount) {
+
+        errorMessage.textContent =
+            "Loan amount must be between " +
+            formatMoney(selectedLoan.minAmount) + " and " +
+            formatMoney(selectedLoan.maxAmount) + ".";
+
+        amountInput.classList.add("is-invalid");
+        return;
+    }
+
+    // Validate loan term
+    if (!Number.isInteger(months) ||
+        months < selectedLoan.minMonths ||
+        months > selectedLoan.maxMonths) {
+
+        errorMessage.textContent =
+            "Loan term must be a whole number between " +
+            selectedLoan.minMonths + " and " +
+            selectedLoan.maxMonths + " months.";
+
+        monthsInput.classList.add("is-invalid");
+        return;
+    }
+
+    // Calculate payments
     const monthlyRate = selectedLoan.annualRate / 12 / 100;
 
     const monthlyPayment = amount * monthlyRate /
