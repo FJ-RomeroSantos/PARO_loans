@@ -54,7 +54,7 @@
 
 ---
 
-## Persona 3: Alberto Alowayran, the Loan Reviewer
+## Persona 3: Alberto Alowayran (Admin), the Loan Reviewer
 
 | | |
 |---|---|
