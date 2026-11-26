@@ -42,6 +42,9 @@ const monthsInput = document.getElementById("months");
 const monthlyPaymentResult = document.getElementById("monthlyPayment");
 const totalPaymentResult = document.getElementById("totalPayment");
 const totalInterestResult = document.getElementById("totalInterest");
+const requestButton = document.getElementById("requestButton");
+
+let currentLoan = null;
 
 // Format amounts as currency
 function formatMoney(value) {
@@ -65,6 +68,8 @@ function calculateLoan() {
     const monthsHelp = document.getElementById("monthsHelp");
 
     errorMessage.textContent = "";
+    requestButton.disabled = true;
+    currentLoan = null;
     amountInput.classList.remove("is-invalid");
     monthsInput.classList.remove("is-invalid");
 
@@ -145,11 +150,38 @@ function calculateLoan() {
     monthlyPaymentResult.textContent = formatMoney(monthlyPayment);
     totalPaymentResult.textContent = formatMoney(totalPayment);
     totalInterestResult.textContent = formatMoney(totalInterest);
+
+    // Store the calculated loan
+currentLoan = {
+    type: selectedLoan.name,
+    amount: amount,
+    months: months,
+    annualRate: selectedLoan.annualRate,
+    monthlyPayment: Number(monthlyPayment.toFixed(2)),
+    totalPayment: Number(totalPayment.toFixed(2)),
+    totalInterest: Number(totalInterest.toFixed(2))
+};
+
+requestButton.disabled = false;
 }
 
 // Update results when inputs change
 loanType.addEventListener("change", calculateLoan);
 amountInput.addEventListener("input", calculateLoan);
 monthsInput.addEventListener("input", calculateLoan);
+
+// Save the loan and open the request page
+requestButton.addEventListener("click", function () {
+    if (currentLoan === null) {
+        return;
+    }
+
+    sessionStorage.setItem(
+        "paro_draft",
+        JSON.stringify(currentLoan)
+    );
+
+    window.location.href = "request.html";
+});
 
 loadLoanTypes();
