@@ -2,8 +2,6 @@
 
 PARO is a simple web application that lets users calculate a loan, submit a loan application, and lets administrators review and approve or reject those applications.
 
-> Academic project. All data (users, rates, loans) is fictional and stored client-side. Not for production use.
-
 ## Features
 
 - Login and registration (new accounts are always regular users)
