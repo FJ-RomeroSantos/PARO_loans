@@ -89,16 +89,4 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 
 document.getElementById('logout-btn').addEventListener('click', logout);
 
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    currentFilter = btn.dataset.filter;
-    document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('btn-primary', b === btn);
-      b.classList.toggle('btn-outline-primary', b !== btn);
-    });
-    render();
-  });
-});
-
-document.getElementById('logout-btn').addEventListener('click', logout);
 render();
