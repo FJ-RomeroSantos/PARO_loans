@@ -56,4 +56,24 @@ function render() {
   `).join('');
 }
 
+function saveRequests(list) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+}
+
+function updateStatus(id, newStatus) {
+  const list = getRequests();
+  const request = list.find(r => String(r.id) === String(id));
+  if (request) {
+    request.status = newStatus;
+    saveRequests(list);
+    render();
+  }
+}
+
+// One listener for all Approve / Reject buttons
+document.getElementById('requests-body').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-action]');
+  if (btn) updateStatus(btn.dataset.id, btn.dataset.action);
+});
+
 render();
