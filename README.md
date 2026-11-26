@@ -118,12 +118,3 @@ Application object:
 - [User Personas](docs/personas.md)
 - [Journey Map](docs/journey-map.md)
 
-## Running the project
-
-`fetch` does not work when opening files directly. Use **GitHub Pages** (Settings → Pages → Branch `main`) or the VS Code *Live Server* extension.
-
-## Known Limitations
-
-- Passwords are stored in plain text in a public JSON file.
-- New users and applications live in each browser's `localStorage`, so they are not shared between devices.
-- A real system would require a backend and a database.
