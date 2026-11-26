@@ -81,7 +81,6 @@ gantt
 4. Tick the checklist items in your Issue as you finish them.
 5. Open a Pull Request to `main`. Javier reviews and merges.
 
-Using AI is allowed. In every Pull Request add 2 lines: *what I researched / what AI helped with / what I changed*.
 
 ## Data Contract (everyone must follow this)
 
