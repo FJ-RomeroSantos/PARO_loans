@@ -93,3 +93,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+function getSession() {
+  try {
+    const session = JSON.parse(localStorage.getItem("paro_session"));
+
+    if (
+      !session ||
+      typeof session.username !== "string" ||
+      typeof session.role !== "string"
+    ) {
+      return null;
+    }
+
+    return session;
+  } catch (error) {
+    return null;
+  }
+}
+
+function requireLogin() {
+  const session = getSession();
+
+  if (!session) {
+    window.location.href = "index.html";
+    return null;
+  }
+
+  return session;
+}
+
+function requireAdmin() {
+  const session = getSession();
+
+  if (!session) {
+    window.location.href = "index.html";
+    return null;
+  }
+
+  if (session.role !== "admin") {
+    window.location.href = "home.html";
+    return null;
+  }
+
+  return session;
+}
+
+function logout() {
+  localStorage.removeItem("paro_session");
+  window.location.href = "index.html";
+}
