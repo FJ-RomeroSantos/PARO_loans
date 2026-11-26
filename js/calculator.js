@@ -8,7 +8,7 @@ const errorMessage = document.getElementById("errorMessage");
 // Load loan types from the JSON file
 async function loadLoanTypes() {
     try {
-        const response = await fetch("data/loan-type.json");
+        const response = await fetch("data/loan-types.json");
 
         if (!response.ok) {
             throw new Error("Could not load loan types.");
