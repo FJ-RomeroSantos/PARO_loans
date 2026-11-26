@@ -33,16 +33,65 @@ async function loadLoanTypes() {
 }
 
 // Display the interest rate of the selected loan
-loanType.addEventListener("change", function () {
+
+// Input fields
+const amountInput = document.getElementById("amount");
+const monthsInput = document.getElementById("months");
+
+// Result fields
+const monthlyPaymentResult = document.getElementById("monthlyPayment");
+const totalPaymentResult = document.getElementById("totalPayment");
+const totalInterestResult = document.getElementById("totalInterest");
+
+// Format amounts as currency
+function formatMoney(value) {
+    return value.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD"
+    });
+}
+
+// Calculate loan payments
+function calculateLoan() {
     const selectedLoan = loanTypes.find(function (loan) {
         return loan.id === loanType.value;
     });
+
+    const amount = Number(amountInput.value);
+    const months = Number(monthsInput.value);
 
     if (selectedLoan) {
         annualRate.textContent = selectedLoan.annualRate + "%";
     } else {
         annualRate.textContent = "--";
     }
-});
+
+    if (!selectedLoan || amount <= 0 || months <= 0 ||
+        !Number.isInteger(months)) {
+
+        monthlyPaymentResult.textContent = "$0.00";
+        totalPaymentResult.textContent = "$0.00";
+        totalInterestResult.textContent = "$0.00";
+
+        return;
+    }
+
+    const monthlyRate = selectedLoan.annualRate / 12 / 100;
+
+    const monthlyPayment = amount * monthlyRate /
+        (1 - Math.pow(1 + monthlyRate, -months));
+
+    const totalPayment = monthlyPayment * months;
+    const totalInterest = totalPayment - amount;
+
+    monthlyPaymentResult.textContent = formatMoney(monthlyPayment);
+    totalPaymentResult.textContent = formatMoney(totalPayment);
+    totalInterestResult.textContent = formatMoney(totalInterest);
+}
+
+// Update results when inputs change
+loanType.addEventListener("change", calculateLoan);
+amountInput.addEventListener("input", calculateLoan);
+monthsInput.addEventListener("input", calculateLoan);
 
 loadLoanTypes();
