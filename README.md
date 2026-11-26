@@ -1,4 +1,3 @@
-# PARO_loans
 # PARO – Loan Calculator & Application System
 
 PARO is a simple web application that lets users calculate a loan, submit a loan application, and lets administrators review and approve or reject those applications.
