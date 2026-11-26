@@ -1,0 +1,19 @@
+:root {
+  --paro-primary: #1F3A5F;
+  --paro-primary-dark: #16304f;
+  --paro-bg: #F4F6F8;
+  --paro-success: #2E7D32;
+  --paro-danger: #C62828;
+  --paro-warning: #F9A825;
+}
+
+body { font-family: 'Inter', Arial, sans-serif; background: var(--paro-bg); color: #212529; }
+h1, h2, h3, h4 { color: var(--paro-primary); font-weight: 700; }
+
+.btn-primary { background-color: var(--paro-primary); border-color: var(--paro-primary); }
+.btn-primary:hover { background-color: var(--paro-primary-dark); border-color: var(--paro-primary-dark); }
+.btn-outline-primary { color: var(--paro-primary); border-color: var(--paro-primary); }
+.btn-outline-primary:hover { background-color: var(--paro-primary); border-color: var(--paro-primary); }
+
+.bg-paro { background-color: var(--paro-primary) !important; color: #fff; }
+.card { border: 0; border-radius: .75rem; box-shadow: 0 2px 8px rgba(0, 0, 0, .08); }
