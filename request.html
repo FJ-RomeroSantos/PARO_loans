@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PARO – Loan Request</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-paro px-4">
+    <span class="navbar-brand fw-bold">PARO</span>
+    <a href="calculator.html" class="btn btn-outline-light btn-sm">Back to calculator</a>
+  </nav>
+
+  <main class="container py-4">
+    <h1 class="h3 mb-1">Loan Request</h1>
+    <p class="text-muted">Check your loan and fill in your details to apply.</p>
+
+    <div id="request-section" class="row g-4">
+      <!-- Loan summary (filled by js/request.js) -->
+      <div class="col-lg-5">
+        <div class="card p-4">
+          <h2 class="h5 mb-3">Loan summary</h2>
+          <table class="table mb-0">
+            <tbody>
+              <tr><th>Loan type</th><td id="sum-type" class="text-end"></td></tr>
+              <tr><th>Amount</th><td id="sum-amount" class="text-end"></td></tr>
+              <tr><th>Months</th><td id="sum-months" class="text-end"></td></tr>
+              <tr><th>Annual rate</th><td id="sum-rate" class="text-end"></td></tr>
+              <tr><th>Monthly payment</th><td id="sum-monthly" class="text-end fw-bold"></td></tr>
+              <tr><th>Total payment</th><td id="sum-total" class="text-end"></td></tr>
+              <tr><th>Total interest</th><td id="sum-interest" class="text-end"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Applicant form -->
+      <div class="col-lg-7">
+        <div class="card p-4">
+          <h2 class="h5 mb-3">Applicant details</h2>
+          <form id="request-form" novalidate>
+            <div class="mb-3">
+              <label for="fullName" class="form-label">Full name</label>
+              <input type="text" id="fullName" class="form-control" required>
+              <div class="invalid-feedback">Please enter your full name.</div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" required>
+              <div class="invalid-feedback">Please enter a valid email.</div>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" id="phone" class="form-control" pattern="[0-9+ ()-]{7,}" required>
+              <div class="invalid-feedback">Please enter a valid phone number (at least 7 digits).</div>
+            </div>
+            <div class="mb-4">
+              <label for="monthlyIncome" class="form-label">Monthly income ($)</label>
+              <input type="number" id="monthlyIncome" class="form-control" min="1" step="0.01" required>
+              <div class="invalid-feedback">Please enter your monthly income.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit application</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success message (hidden until the form is sent) -->
+    <div id="success-section" class="card p-4 text-center d-none">
+      <h2 class="h4">Application sent</h2>
+      <p class="mb-1">Your application ID is <strong id="success-id"></strong>.</p>
+      <p class="text-muted">Status: pending. An administrator will review it.</p>
+      <div>
+        <a href="home.html" class="btn btn-primary">Back to home</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/request.js"></script>
+</body>
+</html>
