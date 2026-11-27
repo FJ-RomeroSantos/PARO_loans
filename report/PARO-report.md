@@ -134,8 +134,7 @@ flowchart TD
 | Deliverable | Owner | Status |
 |---|---|---|
 | Login and registration | Angel | [TO FILL] |
-| Home page and sidebar | Emiliano | [TO FILL] |
-| Loan calculator | Alejandra | [TO FILL] |
+| Home page and sidebar | Emiliano | In progress — first version saved; browser testing and PR pending || Loan calculator | Alejandra | [TO FILL] |
 | Request page | Adrian | [TO FILL] |
 | Admin panel | Javier | [TO FILL] |
 | Style guide, personas, journey map | Javier | Done |
@@ -153,7 +152,7 @@ Full flow tested on Friday: register → login → calculate → apply → admin
 | Application saved with correct structure | [TO FILL] |
 | Regular user blocked from `admin.html` | [TO FILL] |
 | Approve / Reject updates status | [TO FILL] |
-| Mobile view | [TO FILL] |
+| Mobile view | Pending — not tested yet |
 
 [TO FILL: bugs found during integration and how they were fixed.]
 
@@ -168,7 +167,35 @@ Full flow tested on Friday: register → login → calculate → apply → admin
 [PASTE REPORT]
 
 ### 9.3 Emiliano – Home & UI
-[PASTE REPORT]
+## Name and role
+
+Emiliano — Home page and UI.
+
+## Objective
+
+My objective was to create the PARO home page with a responsive sidebar and a clear introduction to the loan application flow. The page needed to follow the team’s visual guide and connect to the existing authentication functions.
+
+## What I delivered
+
+I prepared a first complete version of `home.html`. It includes the PARO navigation bar, a responsive sidebar with links to Home, Loan Calculator, Apply, Admin Panel, and Log out, and a main area with a welcome message, a three-step explanation, and cards for Personal, Auto, and Education loans. The cards show the rates provided in the project instructions.
+
+The page also reads the logged-in user’s name with `getSession()`. The Admin Panel link is shown only when the user’s role is `admin`, and the page redirects visitors who are not logged in.
+
+## How I did it (steps, tools, decisions)
+
+I reviewed the README, the team style guide, and the shared stylesheet. I used the GitHub web editor on the `feature/home-emiliano` branch. The page combines layout components from Bootstrap’s Dashboard, Sidebars, Navbars, and Album examples. I reused the team’s Bootstrap CDN, Inter font, `css/styles.css`, and `js/auth.js`, without adding another library or editing shared files.
+
+## Challenges and solutions
+
+The main challenge was understanding how to place the main content inside the existing page structure and how saving in the web editor differs from publishing a page. I replaced the initial draft with one complete HTML file and kept browser testing separate from editing.
+
+## Final status
+
+The first version is saved in the editor. Browser testing, the commit and push, and the Pull Request are still pending.
+
+## Lessons learned
+
+I learned how Bootstrap layout examples can be combined, how responsive navigation works, and how a page can use a shared session function to display role-based navigation. I also learned that saving HTML in the editor does not by itself confirm that the published site is updated.
 
 ### 9.4 Alejandra – Loan Calculator
 ## Objective
