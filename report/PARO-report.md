@@ -171,12 +171,6 @@ Full flow tested on Friday: register → login → calculate → apply → admin
 [PASTE REPORT]
 
 ### 9.4 Alejandra – Loan Calculator
-# PARO — Individual Executive Report
-
-## Name and role
-
-Alejandra Villegas — Loan Calculator Developer.
-
 ## Objective
 
 My objective was to develop a functional loan calculator for PARO, a web application that allows users to estimate loan payments and submit loan applications. The calculator needed to follow the team's style guide and data contract while using HTML, Bootstrap 5, and vanilla JavaScript.
