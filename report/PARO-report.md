@@ -22,7 +22,7 @@ Evrything worked fine :)
 | **Scope** | 6 pages (login, register, home, calculator, request, admin), JSON-based users and loan types |
 | **Duration** | Thursday – Friday (delivery at 6:30 PM) |
 | **Repository** | [TO FILL: GitHub link] |
-| **Live demo** | https://fj-romerosantos.github.io/PARO_loans/ |
+| **Live demo** | https://github.com/FJ-RomeroSantos/PARO_loans.git |
 
 ### Key features
 - Login and registration (new accounts are always regular users)
