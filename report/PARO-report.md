@@ -164,7 +164,33 @@ Full flow tested on Friday: register → login → calculate → apply → admin
 [PASTE REPORT]
 
 ### 9.2 Angel – Authentication
-[PASTE REPORT]
+
+## Name and role
+Angel – Authentication (login, registration and session management).
+
+## Objective
+Build the authentication layer of PARO so that users can log in, new users can register, and every other page can check who is logged in, following the team's Data Contract and style guide.
+
+## What I delivered
+- `index.html`: login form in a centered Bootstrap card with a link to registration.
+- `register.html`: registration form (name, username, password).
+- `js/auth.js`: login against `data/users.json` + `paro_users`, saves `paro_session` and redirects to `home.html`; wrong credentials show a Bootstrap alert. New users are always saved with role `"user"`.
+- Shared functions for the team: `getSession()`, `requireLogin()`, `requireAdmin()` and `logout()`.
+- Improved version: empty-field validation and duplicate-username check (case-insensitive, including demo accounts).
+
+## How I did it (steps, tools, decisions)
+I worked on the branch `feature/auth-angel` using the GitHub web editor, following the Issue checklist in order. I used GitHub Copilot Chat as a step-by-step guide and Claude to review and test each piece of code before committing. I made 6 commits and 2 pull requests (#8 and #9), both merged into `main`. Key decisions: plain vanilla JavaScript with no extra libraries, using only the template from `docs/style-guide.md`, storing only username, name and role in the session (never the password), and committing each checklist item separately.
+
+## Challenges and solutions
+- Code copied from the chat was sometimes cut off; I checked every file before committing.
+- When replacing the registration block, one line (`const loginForm`) was accidentally deleted, which would have broken login; it was detected in review and fixed before merging.
+- GitHub Pages was disabled (404) for most of the work, so testing was done in a local browser until the team enabled it.
+
+## Final status
+All 6 checklist items in Issue #1 are complete and merged into `main`. On GitHub Pages, logging in with the demo account correctly redirects to `home.html`. That page shows a 404 for now, until the home page is merged.
+
+## Lessons learned
+Small, separate commits make progress easy to follow and review. Reviewing code before committing catches errors early. Agreeing on shared names (IDs, storage keys, functions) is what lets each teammate work in parallel.
 
 ### 9.3 Emiliano – Home & UI
 ## Name and role
