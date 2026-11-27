@@ -21,7 +21,7 @@ Evrything worked fine :)
 | **Objective** | Simulate a basic professional web project: login, loan calculation, application and admin review |
 | **Scope** | 6 pages (login, register, home, calculator, request, admin), JSON-based users and loan types |
 | **Duration** | Thursday – Friday (delivery at 6:30 PM) |
-| **Repository** | [TO FILL: GitHub link] |
+| **Repository** | https://github.com/FJ-RomeroSantos/PARO_loans.git |
 | **Live demo** | https://github.com/FJ-RomeroSantos/PARO_loans.git |
 
 ### Key features
