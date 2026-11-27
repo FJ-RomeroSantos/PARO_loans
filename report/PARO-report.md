@@ -171,7 +171,45 @@ Full flow tested on Friday: register → login → calculate → apply → admin
 [PASTE REPORT]
 
 ### 9.4 Alejandra – Loan Calculator
-[PASTE REPORT]
+# PARO — Individual Executive Report
+
+## Name and role
+
+Alejandra Villegas — Loan Calculator Developer.
+
+## Objective
+
+My objective was to develop a functional loan calculator for PARO, a web application that allows users to estimate loan payments and submit loan applications. The calculator needed to follow the team's style guide and data contract while using HTML, Bootstrap 5, and vanilla JavaScript.
+
+## What I delivered
+
+I developed two main files: `calculator.html` and `js/calculator.js`. The calculator allows users to select a loan type, enter an amount, and choose a repayment period. It automatically displays the monthly payment, total payment, and total interest.
+
+I also implemented input validation and a request button that stores the selected loan in `sessionStorage` using the `paro_draft` key before redirecting the user to the request page.
+
+## How I did it (steps, tools, decisions)
+
+I first researched the fixed-payment loan amortization formula. The monthly payment is calculated using the principal, monthly interest rate, and repayment period.
+
+I built the interface using Bootstrap components and the team's shared stylesheet. I used `fetch()` to retrieve loan types, interest rates, and minimum and maximum values from the JSON file.
+
+JavaScript event listeners were implemented to update the results automatically whenever users modify their inputs.
+
+I worked with Visual Studio Code, PowerShell, Git, and GitHub, using the branch `feature/calculator-alejandra`. I organized my development into four commits and tested each stage using a local Python HTTP server.
+
+## Challenges and solutions
+
+One initial challenge was configuring Git on Windows, including setting up my author identity. I also identified a difference between the JSON filename in the repository and the data contract. I temporarily used the existing filename without modifying shared files.
+
+I tested invalid amounts, repayment periods, automatic calculations, and the stored loan object using browser developer tools.
+
+## Final status
+
+All five development tasks in Issue #3 have been implemented, and my changes have been pushed to GitHub. The calculator works independently, including validation and draft storage. Authentication integration, final filename confirmation, and end-to-end testing with the request page remain pending.
+
+## Lessons learned
+
+This project helped me understand Bootstrap layouts, JavaScript event handling, JSON data retrieval, browser storage, input validation, and collaborative development using Git branches, commits, and GitHub Issues.
 
 ### 9.5 Adrian – Applications
 [PASTE REPORT]
