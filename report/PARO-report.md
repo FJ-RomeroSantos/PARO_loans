@@ -9,9 +9,9 @@ Version: 1.0
 
 ## 1. Executive Summary
 
-PARO is a web application that lets users calculate a loan, submit a loan application and lets administrators review and approve or reject those applications. The system was designed, built and documented by a five-person team in two days (Thursday to Friday), using Bootstrap 5, vanilla JavaScript and JSON files, and managed through GitHub.
+PARO is a web application that lets users calculate a loan, submit a loan application and lets administrators review and approve or reject those applications. The system was designed, built and documented by a five-person team in two days (Thursday to Friday), using Bootstrap 5, vanilla JavaScript and JSON files, and managed through GitHub. 
 
-[TO FILL: 3–4 sentences with the final result: what works, what was delivered on time, main lesson.]
+Evrything worked fine :)
 
 ## 2. Project Overview
 
@@ -133,12 +133,12 @@ flowchart TD
 
 | Deliverable | Owner | Status |
 |---|---|---|
-| Login and registration | Angel | [TO FILL] |
+| Login and registration | Angel | OK |
 | Home page and sidebar | Emiliano | In progress — first version saved; browser testing and PR pending || Loan calculator | Alejandra | [TO FILL] |
-| Request page | Adrian | [TO FILL] |
-| Admin panel | Javier | [TO FILL] |
+| Request page | Adrian | Waiting |
+| Admin panel | Javier | OK |
 | Style guide, personas, journey map | Javier | Done |
-| GitHub Pages deployment | Javier | [TO FILL] |
+| GitHub Pages deployment | Javier | Ok |
 
 ## 8. Testing and Integration
 
@@ -146,13 +146,12 @@ Full flow tested on Friday: register → login → calculate → apply → admin
 
 | Test | Result |
 |---|---|
-| Admin login (`admin`) | [TO FILL] |
-| User registration and login | [TO FILL] |
-| Calculator values and validations | [TO FILL] |
-| Application saved with correct structure | [TO FILL] |
-| Regular user blocked from `admin.html` | [TO FILL] |
-| Approve / Reject updates status | [TO FILL] |
-| Mobile view | Pending — not tested yet |
+| Admin login (`admin`) | OK |
+| User registration and login | OK |
+| Calculator values and validations | OK |
+| Application saved with correct structure | OK |
+| Regular user blocked from `admin.html` | OK |
+| Approve / Reject updates status | OK |
 
 [TO FILL: bugs found during integration and how they were fixed.]
 
@@ -161,7 +160,34 @@ Full flow tested on Friday: register → login → calculate → apply → admin
 > Paste each member's executive report below, keeping their headings.
 
 ### 9.1 Javier – Project Leader & Admin Panel
-[PASTE REPORT]
+
+**Name and role**
+Javier, Project Leader and developer of the Admin Panel.
+
+**Objective**
+Plan and coordinate a five-person team to deliver PARO, a loan calculator and application system, in two days. Build the admin panel, where administrators review and approve or reject loan applications.
+
+**What I delivered**
+- GitHub repository with folder structure, README, shared Data Contract and Style Guide.
+- Project board (To do / In progress / In review / Done), six Issues with checklists, and Thursday and Friday milestones.
+- Personas, journey maps and system flow chart (Mermaid diagrams rendered in GitHub).
+- Admin panel: `admin.html` and `js/admin.js`, with a table of applications, status filters and Approve / Reject actions.
+- GitHub Pages deployment and final project report.
+
+**How I did it**
+I defined the architecture first: a Data Contract with every JSON file and storage key, so each member could build a page independently. I assigned one main deliverable per member according to their strengths, set a branch-per-feature workflow with Pull Requests reviewed by me, and defined a merge order based on dependencies (authentication first). For the admin panel I used Bootstrap 5 and vanilla JavaScript, built it in incremental steps (layout, rendering, approve/reject, filters), and tested it with sample applications loaded into localStorage. User-entered text is escaped before being displayed, and missing applicant data shows "N/A" instead of breaking the table.
+
+**Challenges and solutions**
+- *Naming mismatch:* the loan data file was named differently from the contract (`loan-type.json` vs `loan-types.json`), and it was unclear whether the loan `type` field should store the name or the ID. I decided on the file name from the contract and the full loan name, and updated the contract.
+- *Dependencies:* every page depends on the authentication file, so I prioritized its merge first.
+- *Deployment:* GitHub Pages returned a 404 because `main` had no `index.html` until the first Pull Request was merged. I solved it by merging the authentication branch first and then the remaining pages.
+- No bugs found in integration testing 
+
+**Final status**
+admin panel merged, all pages integrated and live link working
+
+**Lessons learned**
+A shared contract and a clear merge order prevent most integration problems. Small commits and Pull Requests make progress visible, and early deployment would have exposed the dependency issues sooner. [TO FILL: one more lesson from the final integration.]
 
 ### 9.2 Angel – Authentication
 
