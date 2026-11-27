@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const registerForm = document.getElementById("registerForm");
 
   if (registerForm) {
-    registerForm.addEventListener("submit", (event) => {
+    registerForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const name = document.getElementById("name").value.trim();
@@ -10,30 +10,65 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
       const alertBox = document.getElementById("registerAlert");
 
-      try {
-        const users = JSON.parse(localStorage.getItem("paro_users") || "[]");
+      alertBox.textContent = "";
+      alertBox.classList.add("d-none");
+      alertBox.classList.remove("alert-success");
+      alertBox.classList.add("alert-danger");
 
-        if (!Array.isArray(users)) {
-          throw new Error("Stored users are not an array.");
+      if (!name || !username || !password) {
+        alertBox.textContent = "Please complete all fields.";
+        alertBox.classList.remove("d-none");
+        return;
+      }
+
+      try {
+        const response = await fetch("data/users.json");
+
+        if (!response.ok) {
+          throw new Error("Could not load the account data.");
         }
 
-        users.push({
+        const data = await response.json();
+        const demoUsers = data.users;
+        const registeredUsers = JSON.parse(
+          localStorage.getItem("paro_users") || "[]"
+        );
+
+        if (!Array.isArray(demoUsers) || !Array.isArray(registeredUsers)) {
+          throw new Error("User data has an invalid format.");
+        }
+
+        const normalizedUsername = username.toLowerCase();
+        const usernameExists = [...demoUsers, ...registeredUsers].some(
+          (account) =>
+            account &&
+            typeof account.username === "string" &&
+            account.username.trim().toLowerCase() === normalizedUsername
+        );
+
+        if (usernameExists) {
+          alertBox.textContent = "That username is already in use.";
+          alertBox.classList.remove("d-none");
+          return;
+        }
+
+        registeredUsers.push({
           username,
           password,
           role: "user",
           name
         });
 
-        localStorage.setItem("paro_users", JSON.stringify(users));
+        localStorage.setItem("paro_users", JSON.stringify(registeredUsers));
 
         alertBox.textContent = "Account created. You can now log in.";
         alertBox.classList.remove("d-none", "alert-danger");
         alertBox.classList.add("alert-success");
         registerForm.reset();
       } catch (error) {
-        alertBox.textContent = "Registration could not be completed. Please try again.";
-        alertBox.classList.remove("d-none", "alert-success");
-        alertBox.classList.add("alert-danger");
+        alertBox.textContent =
+          "Registration could not be completed. Please try again.";
+        alertBox.classList.remove("d-none");
       }
     });
   }
